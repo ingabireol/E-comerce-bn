@@ -26,4 +26,10 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+    public boolean updateQuantity(Long id,int Quantity){
+        return productRepository.updateProductQuantity(id,Quantity) > 0;
+    }
+    public boolean productExist(Long id){
+        return productRepository.existsById(id);
+    }
 }

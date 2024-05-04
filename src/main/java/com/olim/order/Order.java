@@ -22,4 +22,5 @@ public class Order {
     @OneToMany
     @Column(name = "product_orders")
     private List<ProductOrder> productOrders;
+    private boolean checked;
 }

@@ -26,4 +26,9 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public boolean checkOutOrder(Order order) {
+        order.setChecked(true);
+        orderRepository.save(order);
+        return orderRepository.existsById(order.getId());
+    }
 }

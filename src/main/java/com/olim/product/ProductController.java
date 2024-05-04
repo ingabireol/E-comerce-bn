@@ -22,7 +22,11 @@ public class ProductController {
         else return ResponseEntity.status(303).body("Product not saved");
     }
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getProducts(){
+    public ResponseEntity<List<Product>> getAllProducts(){
         return ResponseEntity.status(200).body(service.getAllProducts());
+    }
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Product> getProduct(@PathVariable Long id){
+        return ResponseEntity.status(200).body(service.getProduct(id));
     }
 }
