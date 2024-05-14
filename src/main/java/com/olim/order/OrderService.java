@@ -1,6 +1,7 @@
 package com.olim.order;
 
 import com.olim.product.Product;
+import com.olim.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,8 @@ public class OrderService {
         order.setChecked(true);
         orderRepository.save(order);
         return orderRepository.existsById(order.getId());
+    }
+    public List<Order> getUserOrders(User user){
+        return orderRepository.findAllByUser(user);
     }
 }

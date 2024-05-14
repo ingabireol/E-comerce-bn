@@ -21,12 +21,25 @@ public class ProductController {
         }
         else return ResponseEntity.status(303).body("Product not saved");
     }
-    @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts(){
+    @GetMapping("/get/user/{id}")
+    public ResponseEntity<List<Product>> getUserProducts(@PathVariable Long id){
+        return ResponseEntity.status(200).body(service.getAllUserProducts(id));
+    }
+    @GetMapping("/get/all")
+    public ResponseEntity<List<Product>> getAll(){
         return ResponseEntity.status(200).body(service.getAllProducts());
     }
     @GetMapping("/get/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Long id){
         return ResponseEntity.status(200).body(service.getProduct(id));
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id){
+        if (!service.productExist(id))
+            return ResponseEntity.ok("Product does not exist");
+
+        return service.deleteProduct(id)? ResponseEntity.ok("Product Delete"):
+                ResponseEntity.status(210).body("Product not deleted");
+    }
+
 }

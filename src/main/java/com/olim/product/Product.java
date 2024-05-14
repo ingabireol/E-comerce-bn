@@ -1,9 +1,7 @@
 package com.olim.product;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.olim.user.User;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,5 +17,7 @@ public class Product {
     private Double price;
     private int quantity;
     private boolean available;
+    @ManyToOne
+    private User user;
 
 }

@@ -1,6 +1,7 @@
 package com.olim.order;
 
 import com.olim.product.ProductService;
+import com.olim.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,12 @@ public class OrderController {
     @GetMapping("/all")
     public ResponseEntity<List<Order>> getAllOrders(){
         return ResponseEntity.ok(orderService.getAllOrders());
+    }
+    @GetMapping("/all/user/{id}")
+    public ResponseEntity<List<Order>> getAllUsersOrders(@PathVariable Long id){
+        User user = new User();
+        user.setId(id);
+        return ResponseEntity.ok(orderService.getUserOrders(user));
     }
 
 }
